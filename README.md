@@ -1,6 +1,3 @@
-Sure! Here's your README content in **Markdown (`.md`)** format:
-
-```markdown
 # MCP Setup Guide
 
 This repository contains multiple MCP (Monitoring Control Point) implementations including **PagerDuty MCP** and **Bugsnag MCP**. Follow the instructions below to set up and run each module.
@@ -99,13 +96,3 @@ python -u "d:\Adya\MCPs\test.py"
 * This setup assumes you're on Windows (`.venv\Scripts\activate`). For macOS/Linux, use `source .venv/bin/activate`.
 * Use `uv` for faster and reproducible Python dependency management.
 
----
-
-## 📞 Support
-
-For any issues or contributions, please open an issue or a pull request.
-
-```
-
-You can copy this and save it as `README.md` in your `/MCPs` GitHub project folder. Let me know if you want it customized further!
-```
