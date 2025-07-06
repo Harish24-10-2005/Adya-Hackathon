@@ -17,10 +17,22 @@ client = MultiServerMCPClient({
         "args": ["D:/Adya/MCPs/bugsnag-mcp/build/index.js"],
         "transport": "stdio",
         "env": {
-            "BUGSNAG_API_KEY": "943769e3-a508-4b21-82ed-8e5e6ea93d05"
+            "BUGSNAG_API_KEY": "#-#-#-##-#"
         },
         "disabled": False,
         "alwaysAllow":[]
+    },
+    "redhat": {
+        "command": "uv",
+        "args": [
+            "run",
+            "redhat_mcp_server.py"
+        ],
+        "cwd": "D:/Adya/MCPs_Server/redhat-api-mcp",
+        "transport": "stdio",
+        "env": {
+            "RH_API_OFFLINE_TOKEN": "##.##.#-#"
+        }
     }
 })
 
@@ -28,7 +40,7 @@ async def main():
     tools = await client.get_tools()
     agent = create_react_agent(llm, tools)
     response = await agent.ainvoke({
-        "messages": [{"role": "user", "content": "what are the teams in my pagerduty"}]
+        "messages": [{"role": "user", "content": "what are tool u have access in redhat"}]
     })
     for i in response["messages"]:
         i.pretty_print()
