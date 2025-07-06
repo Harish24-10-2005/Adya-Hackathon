@@ -20,7 +20,7 @@ def main():
 
     logger.info(f"Starting PagerDuty MCP Server v{version('pagerduty_mcp_server')}...")
     try:
-        mcp.run(transport="streamable-http")
+        mcp.run()
     except Exception as e:
         logger.error(f"Server failed to start: {e}")
         return 1

@@ -4,13 +4,23 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.prebuilt import create_react_agent
 
 llm = ChatGroq(
-    model="deepseek-r1-distill-llama-70b"
+    model="qwen-qwq-32b"
 )
 
 client = MultiServerMCPClient({
     "pagerduty": {
-        "url": "http://127.0.0.1:8000/mcp/",
-        "transport": "streamable_http",
+        "command": "uv",
+        "args": [
+            "run",
+            "python",
+            "-m",
+            "pagerduty_mcp_server"
+        ],
+        "cwd": "D:/Adya/MCPs_Server/pagerduty-mcp-server",
+        "transport": "stdio",
+        "env": {
+            "PAGERDUTY_API_TOKEN": "###"
+        }
     },
     "bugsnag": {
 
@@ -53,7 +63,7 @@ async def main():
     tools = await client.get_tools()
     agent = create_react_agent(llm, tools)
     response = await agent.ainvoke({
-        "messages": [{"role": "user", "content": "list the datasets in langsmith"}]
+        "messages": [{"role": "user", "content": "show all escalation policies available in team id PIBQIWK in pagerduty"}]
     })
     for i in response["messages"]:
         i.pretty_print()
