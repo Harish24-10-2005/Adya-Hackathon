@@ -13,6 +13,7 @@ client = MultiServerMCPClient({
         "transport": "streamable_http",
     },
     "bugsnag": {
+
         "command": "node",
         "args": ["D:/Adya/MCPs/bugsnag-mcp/build/index.js"],
         "transport": "stdio",
@@ -33,6 +34,18 @@ client = MultiServerMCPClient({
         "env": {
             "RH_API_OFFLINE_TOKEN": "##.##.#-#"
         }
+    },
+    "LangSmith API MCP Server": {
+            "command": "D:/Adya/MCPs/langsmith-mcp-server/.venv/Scripts/python.exe",
+            "args": [
+                "-m",
+                "langsmith_mcp_server.server"
+            ],
+            "cwd": "D:/Adya/MCPs/langsmith-mcp-server",
+            "transport": "stdio",
+            "env": {
+                "LANGSMITH_API_KEY": "#####"
+            }
     }
 })
 
@@ -40,7 +53,7 @@ async def main():
     tools = await client.get_tools()
     agent = create_react_agent(llm, tools)
     response = await agent.ainvoke({
-        "messages": [{"role": "user", "content": "what are tool u have access in redhat"}]
+        "messages": [{"role": "user", "content": "list the datasets in langsmith"}]
     })
     for i in response["messages"]:
         i.pretty_print()
